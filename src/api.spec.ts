@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getApi, responseGetApi } from "./api";
+import { getApi, getApiObservable, responseGetApi } from "./api";
 jest.mock("axios");
 
 describe("api.spec", () => {
@@ -13,5 +13,9 @@ describe("api.spec", () => {
 
     const res = await getApi();
     expect(res).toBe(true);
+
+    getApiObservable.subscribe((d) => {
+      expect(d).toBe(true);
+    });
   });
 });
